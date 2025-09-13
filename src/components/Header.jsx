@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 
+
 export default function Header() {
   return (
     <header className="w-full border-b bg-white px-8 py-4 flex items-center justify-between">
