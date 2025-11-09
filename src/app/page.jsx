@@ -26,7 +26,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* 🖼 Hero section */}
+      {/* Hero section */}
       <div className="relative">
         <img
           src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop"
@@ -59,7 +59,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 🛍 Productos */}
+      {/* Productos */}
       <div className="px-6 md:px-8 py-10 bg-white">
         {/* Categorías */}
         <div className="flex justify-center gap-8 mb-10 border-b pb-2 flex-wrap">
