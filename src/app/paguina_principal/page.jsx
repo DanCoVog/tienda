@@ -5,6 +5,8 @@ export default function Home() {
   const categories = ["Mens", "Womens", "Objects"];
   const [activeCategory, setActiveCategory] = useState("Mens");
   
+  // Sample product data
+  
 
   const products = [
     // Mens products
