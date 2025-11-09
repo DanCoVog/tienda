@@ -4,10 +4,16 @@ import { useState } from "react";
 export default function Home() {
   const categories = ["Mens", "Womens", "Objects"];
   const [activeCategory, setActiveCategory] = useState("Mens");
+<<<<<<< HEAD
 
   const filteredProducts = products.filter(
     (product) => product.category === activeCategory
   );
+=======
+  
+  // Sample product data
+  
+>>>>>>> bd7677a1ace3d8f411ce3dfd7fb86f2ae7df5140
 
   const products = [
     // Mens products
