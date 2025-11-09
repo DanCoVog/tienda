@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -23,7 +25,7 @@ export default function ProductDetail() {
         }
         setProduct(data);
 
-        // 🔁 Buscar productos relacionados por categoría
+        //Buscar productos relacionados por categoría
         const allRes = await fetch("/api/products");
         const all = await allRes.json();
         const relatedProducts = all.filter(
@@ -58,13 +60,13 @@ export default function ProductDetail() {
 
   return (
     <div className="min-h-screen bg-white p-6 md:p-12">
-      {/* 🔙 Volver */}
+      {/* Volver */}
       <Link href="/" className="text-sm text-gray-600 hover:underline">
         ← Volver al inicio
       </Link>
 
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-        {/* 🖼 Imagen principal */}
+        {/* Imagen principal */}
         <div className="w-full">
           <img
             src={product.img}
@@ -73,23 +75,27 @@ export default function ProductDetail() {
           />
         </div>
 
-        {/* 📋 Información del producto */}
+        {/* Información del producto */}
         <div className="flex flex-col gap-4">
           <h1 className="text-3xl font-semibold text-gray-900">{product.name}</h1>
           <p className="text-lg text-gray-700">
             Precio: <span className="font-medium">${product.price.toLocaleString()}</span>
           </p>
-          <p className="text-sm text-green-600 font-medium">Disponible ✓</p>
+          <p className="text-sm text-green-600 font-medium flex items-center gap-2">
+            Disponible
+            <FontAwesomeIcon icon={faCheck} className="w-4 h-4" />
+          </p>
 
           <p className="text-gray-600 leading-relaxed">{product.description}</p>
 
-          <button className="mt-4 bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition-all w-fit">
-            🛒 Agregar al carrito
+          <button className="mt-4 bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition-all w-fit flex items-center gap-2">
+            <FontAwesomeIcon icon={faShoppingCart} className="w-4 h-4" />
+            <span>Agregar al carrito</span>
           </button>
         </div>
       </div>
 
-      {/* 🛍 Productos relacionados */}
+      {/* Productos relacionados */}
       {related.length > 0 && (
         <div className="mt-16">
           <h2 className="text-2xl font-semibold mb-6 text-gray-800">Productos relacionados</h2>

@@ -1,13 +1,15 @@
 'use client';
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
   const categories = ["Mens", "Womens", "Objects"];
   const [activeCategory, setActiveCategory] = useState("Mens");
   const [products, setProducts] = useState([]);
 
-  // 🧠 Cargar productos desde el backend (API route)
+  //Cargar productos desde el backend (API route)
   useEffect(() => {
     const fetchProducts = async () => {
       const res = await fetch("/api/products");
@@ -17,7 +19,7 @@ export default function Home() {
     fetchProducts();
   }, []);
 
-  // 🔎 Filtra productos por categoría
+  //Filtra productos por categoría
   const filteredProducts = products.filter(
     (p) => p.category === activeCategory
   );
@@ -44,7 +46,10 @@ export default function Home() {
             <a href="#" className="hover:text-gray-300">Iniciar sesión</a>
             <a href="#" className="hover:text-gray-300">Ayuda</a>
             <a href="#" className="hover:text-gray-300">Contacto</a>
-            <a href="#" className="hover:text-gray-300">Compras 🛒</a>
+            <a href="#" className="hover:text-gray-300">
+              <span className="mr-2">Compras</span>
+              <FontAwesomeIcon icon={faShoppingCart} />
+            </a>
           </div>
         </header>
 
