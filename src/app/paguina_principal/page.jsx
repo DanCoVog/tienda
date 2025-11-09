@@ -4,7 +4,10 @@ import { useState } from "react";
 export default function Home() {
   const categories = ["Mens", "Womens", "Objects"];
   const [activeCategory, setActiveCategory] = useState("Mens");
-  
+
+  const filteredProducts = products.filter(
+    (product) => product.category === activeCategory
+  );
 
   const products = [
     // Mens products
