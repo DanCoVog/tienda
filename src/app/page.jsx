@@ -8,6 +8,7 @@ export default function Home() {
   const categories = ["Mens", "Womens", "Objects"];
   const [activeCategory, setActiveCategory] = useState("Mens");
   const [products, setProducts] = useState([]);
+  const [productFilter, setProductFilter] = useState([]);
 
   //Cargar productos desde el backend (API route)
   useEffect(() => {
@@ -20,9 +21,11 @@ export default function Home() {
   }, []);
 
   //Filtra productos por categoría
-  const filteredProducts = products.filter(
-    (p) => p.category === activeCategory
-  );
+  function filterProductsByCategory(category) {
+    setActiveCategory(category);
+    setProductFilter(products.filter((p) => p.category === category));
+  }
+  const filteredProducts = productFilter;
 
   return (
     <div className="min-h-screen bg-white">
