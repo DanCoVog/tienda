@@ -1,12 +1,9 @@
 "use client";
 import Link from "next/link";
-import { useCart } from "../context/CartContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 export default function ProductCard({ product }) {
-  const { addToCart } = useCart();
-
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden group">
       <Link href={`/product/${product.id}`}>
@@ -27,12 +24,12 @@ export default function ProductCard({ product }) {
         <p className="text-xs text-gray-500 line-clamp-2">{product.description}</p>
 
         <div className="mt-3 flex gap-2">
-          <button
-            onClick={() => addToCart(product, 1)}
-            className="flex-1 bg-black text-white px-3 py-2 rounded-md text-sm hover:bg-gray-800 transition"
+          <Link
+            href={`/product/${product.id}`}
+            className="flex-1 bg-black text-white px-3 py-2 rounded-md text-sm hover:bg-gray-800 transition flex items-center justify-center gap-2"
           >
-            <FontAwesomeIcon icon={faShoppingCart} className="mr-2" /> Añadir
-          </button>
+            <FontAwesomeIcon icon={faShoppingCart} className="mr-1" /> Añadir
+          </Link>
           <Link
             href={`/product/${product.id}`}
             className="px-3 py-2 rounded-md border text-sm text-gray-700 hover:bg-gray-50"

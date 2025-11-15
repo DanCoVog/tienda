@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   const products = [
-    // 🧍‍♂️ Mens
+    // 🧍‍♂️ hombres
     { name: "Camisa Para Hombre Roja", price: 30000, img: "https://i.pinimg.com/736x/85/59/32/8559327ae237ba29caa06f68f1b5cb8d.jpg", category: "Mens", description: "Camisa básica de algodón color rojo, ideal para uso diario." },
     { name: "Camisa Para Hombre Verde", price: 30000, img: "https://i.pinimg.com/1200x/a9/b4/a1/a9b4a10c1cec1b1a87b78d2000171bfc.jpg", category: "Mens", description: "Camisa de corte clásico color verde con tela transpirable." },
     { name: "Camisa Para Hombre Blanca", price: 30000, img: "https://i.pinimg.com/1200x/87/3a/73/873a73ef8c7bcc267bc490cf9652f7e8.jpg", category: "Mens", description: "Camisa blanca versátil que combina con cualquier outfit." },
@@ -14,7 +14,7 @@ async function main() {
     { name: "Camisa Para Hombre Amarilla", price: 30000, img: "https://i.pinimg.com/736x/e3/d4/44/e3d44422419a5a27062dc8fba59f65fd.jpg", category: "Mens", description: "Camisa amarilla brillante que aporta un toque moderno." },
     { name: "Camisa Para Hombre Cafe", price: 30000, img: "https://i.pinimg.com/736x/f9/26/7c/f9267ce891e243dac91b27131deeb643.jpg", category: "Mens", description: "Camisa café casual con diseño cómodo y tejido resistente." },
 
-    // 👩 Womens
+    // 👩 mujeres
     { name: "Vestido Para Mujer Roja", price: 30000, img: "https://i.pinimg.com/736x/9f/0b/c6/9f0bc6a7e2998c5a8c4102ed84749e51.jpg", category: "Womens", description: "Vestido elegante color rojo ideal para ocasiones especiales." },
     { name: "Saco Para Mujer Blanco", price: 30000, img: "https://i.pinimg.com/1200x/17/c2/9e/17c29e1ff4909a1b529fbfe77434a9bb.jpg", category: "Womens", description: "Saco blanco moderno, ideal para días fríos y looks casuales." },
     { name: "Camisa Para Mujer Negra", price: 30000, img: "https://i.pinimg.com/1200x/d5/d2/aa/d5d2aa7ae503864d80d7080c90e3c9fa.jpg", category: "Womens", description: "Camisa negra con estilo minimalista y tela ligera." },
@@ -24,7 +24,7 @@ async function main() {
     { name: "Camisa Para Mujer Cafe", price: 30000, img: "https://i.pinimg.com/1200x/c3/b1/e6/c3b1e6504d058bd50df51b41a9894ab2.jpg", category: "Womens", description: "Camisa color café de algodón, cómoda y versátil." },
     { name: "Saco Para Mujer Verde", price: 30000, img: "https://i.pinimg.com/736x/66/54/44/66544492205d82f1aa6e9ca208b4de82.jpg", category: "Womens", description: "Saco verde con diseño moderno para días casuales." },
 
-    // 👜 Objects
+    // 👜 objetos
     { name: "Correa para hombre", price: 45000, img: "https://i.pinimg.com/1200x/d3/d0/91/d3d0917b4efa0cc9c546cb34a6614fac.jpg", category: "Objects", description: "Correa de cuero genuino color marrón oscuro." },
     { name: "Correa para mujer", price: 25000, img: "https://i.pinimg.com/736x/6a/c2/31/6ac231d5ded8295b0b536b5e367cb62e.jpg", category: "Objects", description: "Correa delgada color beige, ideal para looks casuales." },
     { name: "Gorra", price: 20000, img: "https://i.pinimg.com/1200x/b2/03/a5/b203a528670e8f507351d47da3c4f03e.jpg", category: "Objects", description: "Gorra deportiva ajustable, disponible en varias tallas." },

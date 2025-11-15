@@ -7,18 +7,24 @@ export default function HombresPage(){
 
   useEffect(()=>{
     async function load(){
-      const res = await fetch('/api/products');
-      const data = await res.json();
-      setProducts((data || []).filter(p=> (p.category||'').toLowerCase().includes('hombre')));
+      try{
+        const res = await fetch('/api/products');
+        const data = await res.json();
+        setProducts((data || []).filter(p=> p.category === 'Mens'));
+      }catch(e){
+        console.error('Error cargando productos Hombres', e);
+      }
     }
     load();
   },[]);
 
   return (
     <div className="min-h-screen p-6">
-      <h1 className="text-2xl font-semibold mb-6">Hombres</h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map(p=> <ProductCard key={p.id} product={p} />)}
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-2xl font-semibold mb-6">Hombres</h1>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {products.map(p=> <ProductCard key={p.id} product={p} />)}
+        </div>
       </div>
     </div>
   )
