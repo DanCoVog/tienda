@@ -1,15 +1,17 @@
-'use client';
+"use client";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { useCart } from "../../../context/CartContext";
 
 export default function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [related, setRelated] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     if (!id) return;
@@ -88,7 +90,12 @@ export default function ProductDetail() {
 
           <p className="text-gray-600 leading-relaxed">{product.description}</p>
 
-          <button className="mt-4 bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition-all w-fit flex items-center gap-2">
+          <button
+            onClick={() => {
+              addToCart(product, 1);
+            }}
+            className="mt-4 bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition-all w-fit flex items-center gap-2"
+          >
             <FontAwesomeIcon icon={faShoppingCart} className="w-4 h-4" />
             <span>Agregar al carrito</span>
           </button>
