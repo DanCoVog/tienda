@@ -5,12 +5,13 @@ import Link from "next/link";
 import ProductCard from "../components/ProductCard";
 
 export default function Home() {
-  const categories = ["Todos", "Hombres", "Mujeres", "Objetos"];
+  // Ahora incluye Revistas
+  const categories = ["Todos", "Hombres", "Mujeres", "Objetos", "Revistas"];
   const [activeCategory, setActiveCategory] = useState("Todos");
   const [products, setProducts] = useState([]);
   const searchParams = useSearchParams();
 
-  //Cargar productos desde el backend (API route)
+  //Cargar productos desde backend
   useEffect(() => {
     const fetchProducts = async () => {
       const res = await fetch("/api/products");
@@ -20,7 +21,7 @@ export default function Home() {
     fetchProducts();
   }, []);
 
-  // Filtrar según categoría seleccionada
+  // Filtrar productos correctamente
   const filteredProducts =
     activeCategory === "Todos"
       ? products
@@ -28,17 +29,21 @@ export default function Home() {
           return (
             (activeCategory === "Hombres" && p.category === "Mens") ||
             (activeCategory === "Mujeres" && p.category === "Womens") ||
-            (activeCategory === "Objetos" && p.category === "Objects")
+            (activeCategory === "Objetos" && p.category === "Objects") ||
+            (activeCategory === "Revistas" && p.category === "Revistas")
           );
         });
 
-  // Si hay query param ?category=..., actualizar el filtro
+  // Sincronizar categoría desde URL (?category=...)
   useEffect(() => {
     const param = searchParams?.get?.("category");
+
     if (param) {
-      // Normalizar y comprobar que el valor esté en la lista de categorías
-      const normalized = param.charAt(0).toUpperCase() + param.slice(1);
-      if (categories.includes(normalized)) setActiveCategory(normalized);
+      const normalized =
+        param.charAt(0).toUpperCase() + param.slice(1).toLowerCase();
+      if (categories.includes(normalized)) {
+        setActiveCategory(normalized);
+      }
     } else {
       setActiveCategory("Todos");
     }
@@ -54,8 +59,8 @@ export default function Home() {
           className="w-full h-96 object-cover"
         />
 
-        <div className="absolute bottom-8 left-8 text-white">
-          <h2 className="text-2xl font-bold mb-2">New Essential Tees</h2>
+        <div className="absolute bottom-8 left-8 text-white drop-shadow-lg">
+          <h2 className="text-3xl font-bold mb-2">New Essential Tees</h2>
           <Link href="/hombres" className="text-sm underline hover:text-gray-300">
             Ver colección de Hombres →
           </Link>
