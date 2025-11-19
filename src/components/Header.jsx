@@ -3,8 +3,21 @@ import Link from "next/link";
 import { ShoppingCart, Menu, X } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
+
+  // Ocultar la barra de navegación en las pantallas de login y register
+  if (
+    pathname === "/login" ||
+    pathname?.startsWith("/login/") ||
+    pathname === "/register" ||
+    pathname?.startsWith("/register/")
+  ) {
+    return null;
+  }
+
   const { count } = useCart();
   const [open, setOpen] = useState(false);
 
