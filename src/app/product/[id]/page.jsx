@@ -29,9 +29,11 @@ export default function ProductDetail() {
 
         const allRes = await fetch("/api/products");
         const all = await allRes.json();
+
         const relatedProducts = all.filter(
-          (p) => p.category === data.category && p.id !== data.id
-        );
+        (p) => p.category === data.category && p.id !== data.id
+      );
+
         setRelated(relatedProducts);
       } catch (err) {
         console.error("Error cargando producto:", err);

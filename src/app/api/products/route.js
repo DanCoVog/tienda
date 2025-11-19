@@ -4,8 +4,8 @@ const prisma = new PrismaClient();
 
 export async function GET() {
   try {
-    const products = await prisma.product.findMany({
-      orderBy: { id: "asc" }, // ordena por ID para mantener consistencia
+    const products = await prisma.Product.findMany({  // ← CAMBIADO
+      orderBy: { id: "asc" },
     });
 
     return new Response(JSON.stringify(products), {
@@ -14,6 +14,9 @@ export async function GET() {
     });
   } catch (error) {
     console.error("❌ Error obteniendo productos:", error);
-    return new Response(JSON.stringify({ error: "Error al obtener productos" }), { status: 500 });
+    return new Response(
+      JSON.stringify({ error: "Error al obtener productos" }),
+      { status: 500 }
+    );
   }
 }

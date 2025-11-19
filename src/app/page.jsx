@@ -5,27 +5,31 @@ import Link from "next/link";
 import ProductCard from "../components/ProductCard";
 
 export default function Home() {
-  // Ahora incluye Revistas
   const categories = ["Todos", "Hombres", "Mujeres", "Objetos", "Revistas"];
   const [activeCategory, setActiveCategory] = useState("Todos");
   const [products, setProducts] = useState([]);
   const searchParams = useSearchParams();
 
-  //Cargar productos desde backend
+  // Cargar productos
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await fetch("/api/products");
-      const data = await res.json();
-      setProducts(data || []);
+      try {
+        const res = await fetch("/api/products");
+        const data = await res.json();
+        setProducts(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error("Error cargando productos:", error);
+        setProducts([]);
+      }
     };
     fetchProducts();
   }, []);
 
-  // Filtrar productos correctamente
+  // Filtrado seguro
   const filteredProducts =
     activeCategory === "Todos"
-      ? products
-      : products.filter((p) => {
+      ? products || []
+      : (products || []).filter((p) => {
           return (
             (activeCategory === "Hombres" && p.category === "Mens") ||
             (activeCategory === "Mujeres" && p.category === "Womens") ||
@@ -34,13 +38,14 @@ export default function Home() {
           );
         });
 
-  // Sincronizar categoría desde URL (?category=...)
+  // Sincronizar categoría desde URL
   useEffect(() => {
     const param = searchParams?.get?.("category");
 
     if (param) {
       const normalized =
         param.charAt(0).toUpperCase() + param.slice(1).toLowerCase();
+
       if (categories.includes(normalized)) {
         setActiveCategory(normalized);
       }
@@ -51,7 +56,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero section */}
+
+      {/* Hero */}
       <div className="relative">
         <img
           src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop"
@@ -69,6 +75,7 @@ export default function Home() {
 
       {/* Productos */}
       <div className="px-6 md:px-8 py-10 bg-white">
+
         {/* Categorías */}
         <div className="flex justify-center gap-8 mb-10 border-b pb-2 flex-wrap">
           {categories.map((cat) => {
@@ -92,10 +99,11 @@ export default function Home() {
 
         {/* Grid de productos */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {filteredProducts.map((p) => (
+          {(filteredProducts || []).map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
         </div>
+
       </div>
     </div>
   );
