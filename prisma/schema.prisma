@@ -33,3 +33,14 @@ model Contact {
 
   @@map("contacts")
 }
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  price       Float
+  image       String?
+  category    String
+  createdAt   DateTime @default(now())
+
+  @@map("products")
+}
